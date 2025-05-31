@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页 | 现代设计风格</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6C63FF;
+            --secondary-color: #4A44C6;
+            --accent-color: #FF6584;
+            --light-color: #F5F5F7;
+            --dark-color: #1A1A2E;
+            --text-color: #333;
+            --text-light: #777;
+            --transition: all 0.3s ease;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            --blur: blur(10px);
+        }
+
+        .dark-mode {
+            --light-color: #1A1A2E;
+            --dark-color: #F5F5F7;
+            --text-color: #fff;
+            --text-light: #aaa;
+            --card-bg: rgba(26, 26, 46, 0.85);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 头部样式 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            background: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(30deg);
+        }
+
+        /* 主要内容区域 */
+        main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: var(--blur);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(31, 38, 135, 0.25);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .card-title i {
+            font-size: 24px;
+            background: rgba(108, 99, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 关于我们卡片 */
+        .about-content {
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+        }
+
+        /* 站长信息卡片 */
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background: var(--secondary-color);
+        }
+
+        /* 旗下网站卡片 */
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .website-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .website-icon {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .website-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .website-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .website-link {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .website-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* 联系方式卡片 */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .contact-details h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .contact-details p {
+            color: var(--text-light);
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+            
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <div class="logo-text">个人空间站</div>
+            </div>
+            <nav class="nav-links">
+                <a href="#about"><i class="fas fa-info-circle"></i> 关于我们</a>
+                <a href="#websites"><i class="fas fa-globe"></i> 旗下网站</a>
+                <a href="#profile"><i class="fas fa-user"></i> 站长信息</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> 联系方式</a>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <main>
+            <section class="card" id="about">
+                <div class="card-title">
+                    <i class="fas fa-info-circle"></i>
+                    <h2>关于我们</h2>
+                </div>
+                <div class="about-content">
+                    <p>欢迎来到我的个人空间站！这里是我展示个人作品、分享知识和创意的平台。作为一个多领域创作者，我致力于打造有价值的内容和产品，为用户带来卓越的体验。</p>
+                    <p>我们的使命是通过技术创新和内容创作，连接人与知识，激发创造力，并为社区提供有价值的资源。无论你是寻找灵感的创作者、寻求解决方案的技术人员，还是对世界充满好奇的学习者，这里都有适合你的内容。</p>
+                    <p>在过去的五年中，我们开发了多个成功的项目，积累了丰富的经验，并建立了一个充满活力的社区。我们相信开放共享的力量，因此我们的大部分作品都是开源的，并欢迎社区的参与和贡献。</p>
+                </div>
+            </section>
+
+            <section class="card" id="profile">
+                <div class="card-title">
+                    <i class="fas fa-user"></i>
+                    <h2>站长信息</h2>
+                </div>
+                <div class="profile">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80" alt="站长头像" class="avatar">
+                    <h3 class="name">张明远</h3>
+                    <div class="title">全栈开发者 & 设计师</div>
+                    <p class="bio">拥有10年互联网行业经验，专注于Web开发、用户体验设计和数字产品创作。热爱开源技术，热衷于知识分享和社区建设。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card" id="websites">
+                <div class="card-title">
+                    <i class="fas fa-globe"></i>
+                    <h2>旗下网站</h2>
+                </div>
+                <div class="websites-grid">
+                    <div class="website-card">
+                        <div class="website-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="website-name">DevHub</h3>
+                        <p class="website-desc">开发者资源中心，提供最新的技术教程、工具和开源项目。</p>
+                        <a href="#" class="website-link">访问网站 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="website-card">
+                        <div class="website-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="website-name">DesignLab</h3>
+                        <p class="website-desc">创意设计平台，展示设计作品、资源和灵感。</p>
+                        <a href="#" class="website-link">访问网站 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="website-card">
+                        <div class="website-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="website-name">LearnSpace</h3>
+                        <p class="website-desc">在线学习平台，提供编程、设计和商业课程。</p>
+                        <a href="#" class="website-link">访问网站 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="website-card">
+                        <div class="website-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="website-name">GreenLife</h3>
+                        <p class="website-desc">可持续生活指南，分享环保理念和实践方法。</p>
+                        <a href="#" class="website-link">访问网站 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card" id="contact">
+                <div class="card-title">
+                    <i class="fas fa-envelope"></i>
+                    <h2>联系方式</h2>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>电子邮箱</h4>
+                            <p>contact@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>电话</h4>
+                            <p>+86 138 8888 8888</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-weixin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>微信</h4>
+                            <p>WebDesignMaster</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>地址</h4>
+                            <p>北京市海淀区科技园区88号</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2023 个人空间站 | 用心创造，共享价值</p>
+            <p>本网站由HTML5和CSS3构建 | 响应式设计</p>
+        </footer>
+    </div>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // 检查本地存储中的主题设置
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // 平滑滚动导航
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
